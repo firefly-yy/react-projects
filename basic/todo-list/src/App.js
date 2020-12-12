@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Alert from './Alert'
 import './App.css'
 // import Form from "./Form"
@@ -19,6 +19,8 @@ function App() {
   //list is an object, it includes id and name!!!
   const [list, setList] = useState(getLocalStorage())
   const [alert, setAlert] = useState({ show: false, massage: '', type: '' })
+  const refContainer = useRef(null)
+
   const handleSubmit = (e) => {
     e.preventDefault()
 
@@ -31,8 +33,8 @@ function App() {
           if (item.id === editId) {
             return { ...item, name: thing }
           }
-          //1.list 是个对象，
-          //2. map是个遍历的过程  所以一定要返回原来的数据，item 即不产生任何改变。
+          //1. item 是个对象，
+          //2. map是个遍历的过程  所以一定要返回原来的数据item, 即不产生任何改变。
           return item
         })
       )
@@ -60,6 +62,7 @@ function App() {
     setEditId(specificItem.id)
     setIsEditing(true)
     setThing(specificItem.name)
+    refContainer.current.focus()
     console.log(id)
   }
   const removeItem = (id) => {
@@ -74,6 +77,7 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('list', JSON.stringify(list))
+    refContainer.current.focus()
   }, [list])
   return (
     <div className='app'>
@@ -89,6 +93,7 @@ function App() {
             placeholder='want to do'
             value={thing}
             onChange={(e) => setThing(e.target.value)}
+            ref={refContainer}
           />
           <button type='submit' className='btn-control' onClick={handleSubmit}>
             {isEditing ? 'edit' : 'submit'}
