@@ -17,23 +17,29 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'capitalize',
   },
 }))
-
-function List({ name, removeItem, id , editItem}) {
+function Thing({ name, id,editItem,removeItem }) {
   const classes = useStyles()
 
   return (
-    <div className={classes.root}>
-      <h4 className='thing'>{name}</h4>
-      <div className='button-container'>
-        <Button variant='text' color='primary' size='small' onClick={() => editItem(id)}>
-          <EditIcon fontSize='small' />
-        </Button>
-        <Button variant='text' color='default' onClick={() => removeItem(id)}>
-          <HighlightOffIcon fontSize='small' />
-        </Button>
+    <div>
+      <div className={classes.root}>
+        <h4 className='thing'>{name}</h4>
+        <div className='button-container'>
+          <Button
+            variant='text'
+            color='primary'
+            size='small'
+            onClick={() => editItem(id)}
+          >
+            <EditIcon fontSize='small' />
+          </Button>
+          <Button variant='text' color='default' onClick={() => removeItem(id)}>
+            <HighlightOffIcon fontSize='small' />
+          </Button>
+        </div>
       </div>
     </div>
   )
 }
 
-export default List
+export default Thing

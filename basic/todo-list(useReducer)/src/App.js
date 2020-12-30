@@ -6,6 +6,7 @@ import './App.css'
 import List from './List'
 import { reducer } from './Reducer'
 
+
 const getLocalStorage = () => {
   let list = localStorage.getItem('list')
   if (list) {
@@ -42,6 +43,7 @@ function App() {
       dispatch({ type: 'SHOW_ALERT', payload: noValueAlert })
     } else if (thing && state.isEditing) {
       dispatch({ type: 'CHANGE_ITEM', payload: thing })
+      setThing('')
     } else {
       const newItem = {
         id: new Date().getTime().toString(),
@@ -114,7 +116,10 @@ function App() {
         )
       })}
       {state.list.length > 0 && (
-        <button className='clear-btn' onClick={() => dispatch({type:'CLEAR_ALL_ITEMS'})}>
+        <button
+          className='clear-btn'
+          onClick={() => dispatch({ type: 'CLEAR_ALL_ITEMS' })}
+        >
           clear all
         </button>
       )}
