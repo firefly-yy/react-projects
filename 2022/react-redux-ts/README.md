@@ -1,3 +1,9 @@
+principle of redux
+
+1. only one store
+2. read only
+3. pure function to change state
+
 Steps to use the redux
 
 -----------preparation steps----------
