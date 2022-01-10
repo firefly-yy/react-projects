@@ -1,4 +1,4 @@
-some knowledge of redux
+principle of redux
 
 1. only one store
 2. read only
