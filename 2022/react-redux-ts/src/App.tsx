@@ -3,6 +3,7 @@ import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators, State } from "./state";
+import Test from "./components/Test";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,14 +22,14 @@ function App() {
           depositMoney(100);
         }}
       >
-        Deposit
+        add
       </button>
       <button
         onClick={() => {
           withdrawMoney(50);
         }}
       >
-        Withdraw
+        reduce
       </button>
       <button
         onClick={() => {
@@ -37,6 +38,7 @@ function App() {
       >
         Bankrupt
       </button>
+      <Test />
     </div>
   );
 }
